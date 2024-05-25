@@ -3,29 +3,34 @@
 
 int main()
 {
-    long long int n, k;
-    scanf("%lld %lld", &n, &k);
+    int n;
+    int k;
+    scanf("%d %d", &n, &k);
 
-    long long int a[n];
-
-    for (long long int i = 0; i < n; i++)
-    {
-        scanf("%lld", &a[i]);
+    int a[n];
+    for (int i = 0; i < n; i++){
+        scanf("%d", &a[i]);
     }
 
-    long long int goodNum = n;
+    int goodNum = n;
 
-    for (long long int i = 0; i < n; i++){
-        long long int temp = a[i];
+    for (int i = 0; i < n; i++){
+        int digits[10] = {0};
+        int temp = a[i];
         while (temp != 0){
-            if (temp == 10){
-                goodNum--;
-            } else if ((temp % 10) > k){
-                goodNum--;
-            }
+            digits[(temp % 10)] = 1;
             temp /= 10;
         }
+
+        for (int j = 0; j <= k; j++){
+            if (digits[j] != 1){
+                goodNum--;
+                break;
+            }
+        }
+
+        // printf("%d\n", digits[i]);
     }
 
-    printf("%lld", goodNum);
+    printf("%d", goodNum);
 }
