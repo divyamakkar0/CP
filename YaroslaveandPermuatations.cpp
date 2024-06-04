@@ -5,24 +5,29 @@ using namespace std;
 
 int main()
 {
-    int n, m;
+    int n;
     cin >> n; 
 
     int elements[n];
-    unordered_map<int, int> frequencyMap;
+    int freq[100000];
+
+    int m = 0;
 
     for (int i = 0; i < n; i++){
         scanf("%d", &elements[i]);
-        frequencyMap[elements[i]]++;
-        if (m>frequencyMap[i]){
-            m = frequencyMap[i];
+        freq[elements[i]]++;
+        // printf("%d\n", freq[elements[i]]);
+        if (freq[elements[i]] > m){
+            m = freq[elements[i]];
         }
+        // printf("m %d\n", m);
     }
 
-
-
-    
-
+    if (m > ((n + 1) / 2)){
+        printf("NO");
+    } else {
+        printf("YES");
+    }
 
 
 }
