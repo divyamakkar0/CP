@@ -11,19 +11,19 @@ int main()
     int t = 0;
 
     for (int i = 0; i < n; i++){
-        if (dir[i] == 'R'){
-            s = i+1;
-            break;
+        if (dir[i] != '.'){
+            if (dir[i] == 'R'){
+                while(dir[i] == 'R'){
+                    i++;
+                } 
+                cout << i << " " << i+1;
+            } else  {
+            s = i + 1;
+            t = i;
+            cout << s << " " << t;
         }
+        break;
     }
 
-    for (int j = n-1; j >= 0; j--){
-        if (dir[j] == 'R'){
-            t = j+1;
-            break;
-        }
     }
-
-    printf("%d %d", s, t);
-
 }
