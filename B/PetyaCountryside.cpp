@@ -10,43 +10,74 @@ int main(){
         cin >> h[i];
     }
 
-    int highest = 0;
+    int max = 0;
     int r = 0;
     int l = 0;
     int counter = 0;
 
     for (int i = 0; i < n; i++){
-        //if not at the ends
-        if (i != 0 || i != n-1){
-            r = i;
-            while (r != n-1){
-                if (h[r+1] <= h[r]){
-                    r = (r+1);
-                    counter++;
-                } else {
-                    break;
-                }
-            }
-            while (l != 0){
-                if(h[l-1] <= h[l]){
-                    l = l-r;
+        //when i = 0
+        if(i == 0){
+            for (int j = i+1; j < n; j++){
+                if (h[j] <= h[j-1]){
                     counter++;
                 } else {
                     break;
                 }
             }
 
-            if (highest < counter){
-                highest = counter;
+            if(max < counter+1){
+                max = counter+1;
             }
-        } else {
-           if(i == 0){
-            
-           }
+
+            counter = 0;
+        }
+        
+        //when i = n-1
+        else if (i == n-1)
+        {
+            for (int j = i-1; j >=0; j--){
+                if (h[j] <= h[j+1]){
+                    counter++;
+                } else {
+                    break;
+                }
+            }
+
+             if(max < counter+1){
+                max = counter+1;
+            }
+            counter = 0;
+        } 
+
+        //every other case
+        else 
+        {
+            for (int j = i+1; j < n; j++){
+                if (h[j] <= h[j-1]){
+                    counter++;
+                } else {
+                    break;
+                }
+            }
+
+             for (int j = i-1; j >=0; j--){
+                if (h[j] <= h[j+1]){
+                    counter++;
+                } else {
+                    break;
+                }
+            }
+
+            if(max < counter+1){
+                max = counter+1;
+            }
+            counter = 0;
+
         }
 
-
-    }
-
+    
+}
+    cout<<max;
 
 }
