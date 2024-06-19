@@ -24,22 +24,22 @@ int main()
     int l = middle;
     int r = middle+1;
 
-
     if (n % 2 != 0){
-    for(int i = 1; i<n; i++){
-        if (i % 2 != 0){
-            if (l == 0){
-                l = n;
-            } 
-            l--;
-            output[l] = s[i];
+        for(int i = 1; i<n; i++){
+            if (i % 2 != 0){
+                if (l == 0){
+                    l = n;
+                } 
+                l--;
+                output[l] = s[i];
 
-        } else {
-            output[r] = s[i];
-            r++;
+            } else {
+                output[r] = s[i];
+                r++;
+            }
         }
-    }
     } else {
+            int l = middle -1;
         for (int i = 1; i < n; i++){
             if (i % 2 != 0){
                 output[r] = s[i];
@@ -50,10 +50,6 @@ int main()
             }
         }
     }
-
-    // if (n % 2 == 0){
-    //     output[n-1] = s[n-1];
-    // }
 
     for (int i = 0; i < n;i++){
         cout << output[i];
