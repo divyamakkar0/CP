@@ -10,19 +10,25 @@ int main()
     int t;
     cin >> t;
 
-    for (int i = 0; i < t; i++)
-    {
-        int x, y, k;
+    while (t--){
+        long long int x, y, k;
         cin >> x >> y >> k;
 
-        for(int i = 0; i < k; i++){
-            x++;
-            // cout << x << endl;
-            if (x % y == 0){
-                x = log x / log y
+        while(k>0){
+            int v = y-x%y;
+            if (k >= (v)){
+                k-=(v);
+                x+=(v);
+                while(x%y ==0){
+                    x/=y;
+                }
+                if(x==1) k%=y-1;
+            } else {
+                x+=k;
+                break;
             }
         }
+            cout <<x<<endl;
+        }
 
-        cout << x << endl;
-    }
 }
