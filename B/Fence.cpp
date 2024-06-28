@@ -15,28 +15,26 @@ int main(){
     for(int i = 0; i <n; i++){
         cin >> h[i];
     }
-    int sum = 100000;
-    int index = 0;
-    //something about sum of k here
-    for(int i = 0; i < n-(k-1); i++){
-        int p = i;
-        int k2 = k;
-        int temp = 0;
+    
+    int sum = 0;
 
-        while(k2){
-            temp += h[i];
-            i++;
-            k2--;
-        }
-        // cout << "temp" << temp << endl;
-        if (temp < sum){
-            sum = temp;
-            index = p;
-        }
-        i = p;
-        // cout << "p " << p << endl;
+    //find the sum of the first k
+    for (int i = 0; i < k; i++){
+        sum += h[i];
     }
 
-    cout << index +1; 
+    int min = sum;
+    int index = 0;
+
+    for(int i = k; i < n; i++){
+        sum = sum - h[i - k] + h[i];
+        if (sum < min){
+            min = sum;
+            index = i-k + 1;
+        }
+    }
+
+    cout << index + 1 << endl; 
+
     
 }
