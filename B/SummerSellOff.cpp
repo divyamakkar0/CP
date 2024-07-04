@@ -35,7 +35,7 @@ int main()
     sort(diff.begin(), diff.end());
 
     for(int i = n-1; i > n - f; i--){
-        
+        initial_sum += diff[i];
     }
 
 }
