@@ -12,15 +12,18 @@ int main()
     cin >> n >> t;
 
     vector<pair<int, int>> d;
+    vector<int> diff(n);
 
-    int sum = 0;
+
+    long long int intial_sum = 0;
     
     for (int i = 0; i < n; i++){
         int a, b;
         cin >> a >> b;
         d.push_back(make_pair(a, b));
-        sum += min(a, b);
+        intial_sum += min(a, b);
+        int c;
+    
     }
 
-   
 }
