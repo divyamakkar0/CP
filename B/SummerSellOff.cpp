@@ -40,4 +40,5 @@ int main()
 
     cout << initial_sum << endl;
 
+    return 0;
 }
