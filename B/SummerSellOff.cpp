@@ -38,4 +38,6 @@ int main()
         initial_sum += diff[i];
     }
 
+    cout << initial_sum << endl;
+
 }
