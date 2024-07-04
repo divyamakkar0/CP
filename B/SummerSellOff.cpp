@@ -8,8 +8,8 @@ using namespace std;
 
 int main()
 {
-    int n, t;
-    cin >> n >> t;
+    int n, f;
+    cin >> n >> f;
 
     vector<pair<long long int, long long int>> d(n); // Initialize with size n
     vector<long long int> diff(n); // Initialize with size n
@@ -33,8 +33,8 @@ int main()
    
 
     sort(diff.begin(), diff.end());
-    
-    for(int i = 0; i < n; i++){
+
+    for(int i = n-1; i > n - f; i--){
         
     }
 
