@@ -33,7 +33,7 @@ int main()
    
 
     sort(diff.begin(), diff.end());
-    fdg
+    
     for(int i = 0; i < n; i++){
         
     }
