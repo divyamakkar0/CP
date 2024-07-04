@@ -11,29 +11,31 @@ int main()
     int n, t;
     cin >> n >> t;
 
-    vector<pair<int, int>> d;
-    vector<int> diff(n);
+    vector<pair<long long int, long long int>> d(n); // Initialize with size n
+    vector<long long int> diff(n); // Initialize with size n
 
+    long long int initial_sum = 0;
 
-    long long int intial_sum = 0;
-    
-    for (int i = 0; i < n; i++){
-        int a = 0; 
-        int b = 0;
+    for (long long int i = 0; i < n; i++){
+        long long int a = 0;
+        long long int b = 0;
         cin >> a >> b;
-        d.push_back(make_pair(a, b));
+        d[i] = make_pair(a, b);
 
-        //initial sum
-        intial_sum += min(a, b);
-
-        //diff
-        int c = 0;
-        c = 2*a - b; 
-        diff.push_back(c);
+        // Initial sum
+        initial_sum += min(a, b);        
+        // Diff
+        long long int c = 0;
+        c = min(2 * a, b) - min(a, b);
+        diff[i] = c;
     }
 
+   
+
+    sort(diff.begin(), diff.end());
+    
     for(int i = 0; i < n; i++){
-        cout << diff[i] << endl;
+        
     }
 
 }
