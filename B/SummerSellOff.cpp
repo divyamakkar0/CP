@@ -28,13 +28,13 @@ int main()
         long long int c = 0;
         c = min(2 * a, b) - min(a, b);
         diff[i] = c;
+
     }
 
-   
 
     sort(diff.begin(), diff.end());
 
-    for(int i = n-1; i > n - f; i--){
+    for(int i = n-1; i >= n - f; i--){
         initial_sum += diff[i];
     }
 

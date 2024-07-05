@@ -3,7 +3,8 @@
         "stdio.h": "c",
         "ostream": "cpp",
         "unordered_map": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "valarray": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }
