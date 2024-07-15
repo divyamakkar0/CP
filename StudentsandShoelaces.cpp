@@ -19,6 +19,7 @@ int main(){
         s[i][1] = b;
     }
 
+    //try logging how many times each name shows up
 
 
 }
