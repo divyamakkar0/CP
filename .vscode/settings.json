@@ -4,7 +4,8 @@
         "ostream": "cpp",
         "unordered_map": "cpp",
         "iostream": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "cmath": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }
