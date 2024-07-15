@@ -19,11 +19,13 @@ int main(){
         cin >> a >> b;
         s[i][0] = a;
         s[i][1] = b;
-        log[a]++;
-        log[b]++;
+        log[a-1]++;
+        log[b-1]++;
     }
 
     //try logging how many times each name shows up
-
+    for(int i = 0; i < n; i++){
+      
+    }
 
 }
