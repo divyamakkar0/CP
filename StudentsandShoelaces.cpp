@@ -13,6 +13,7 @@ int main(){
 
     int s[m][2];
     for(int i = 0; i < m; i++){
-
+        int a, b;
+        cin >> a >> b;
     }
 }
