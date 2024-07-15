@@ -15,5 +15,10 @@ int main(){
     for(int i = 0; i < m; i++){
         int a, b;
         cin >> a >> b;
+        s[i][0] = a;
+        s[i][1] = b;
     }
+
+
+
 }
