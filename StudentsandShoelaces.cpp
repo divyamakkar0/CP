@@ -12,6 +12,7 @@ int main(){
     cin >> n >> m;
 
     int s[m][2];
+    vector<int> log;
     for(int i = 0; i < m; i++){
         int a, b;
         cin >> a >> b;
