@@ -1,31 +1,43 @@
 #include <iostream>
-#include <string>
 #include <vector>
 #include <algorithm>
-#include <cmath>
-#include <set>
-#include <unordered_map>
 using namespace std;
 
-int main(){
+int main() {
     int n, m;
     cin >> n >> m;
 
-    int s[m][2];
-    vector<int> log(n);
-
-    for(int i = 0; i < m; i++){
-        int a, b;
-        cin >> a >> b;
-        s[i][0] = a;
-        s[i][1] = b;
-        log[a-1]++;
-        log[b-1]++;
+    vector<int> graph[n+1];
+    for(int i = 0; i < m; i++) {
+        int x, y;
+        cin >> x >> y;
+        graph[x].push_back(y);
+        graph[y].push_back(x);
     }
 
-    //try logging how many times each name shows up
-    for(int i = 0; i < n; i++){
-      
+    int ko = 0;
+    while(1) {
+        int count = 0;
+        vector<int> to_erase;
+        for(int i = 1; i <= n; i++) {
+            if(graph[i].size() == 1) {
+                count++;
+                to_erase.push_back(i);
+            }
+        }
+        if(count == 0) {
+            break;
+        }
+        ko++;
+        for(int i = 0; i < count; i++) {
+            int x = to_erase[i];
+            int y = graph[x][0];
+            graph[x].clear();
+            graph[y].erase(remove(graph[y].begin(), graph[y].end(), x), graph[y].end());
+        }
     }
 
+    cout << ko << endl;
+
+    return 0;
 }
