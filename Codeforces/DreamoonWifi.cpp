@@ -9,15 +9,12 @@ using namespace std;
 
 int main()
 {
-    string s1;
-    cin >> s1;
-
-    string s2;
-    cin >> s2;
+    string s1, s2;
+    cin >> s1 >> s2;
 
     int oSum = 0;
-    for (int j = 0; j < s1.length(); j++){
-        if(s1[j] == '+'){
+    for (char c : s1){
+        if(c == '+'){
             oSum++;
         } else {
             oSum--;
@@ -25,20 +22,41 @@ int main()
     }
 
     int q = 0;
-    int s2sum = 0;
-    for(int i = 0; i < s2.length(); i++){
-        if(s2[i] == '?'){
-            q++; 
-        } else if (s2[i] == '+'){
-            s2sum++;
-        } else {
-            s2sum--;
+    int correct = 0;
+    for(char c : s2){
+        if(c == '?'){
+            q++;
         }
     }
 
-    int diff = oSum -s2sum;
-    
-    std::cout << "hello";
+    int denom = pow(2, q);
 
+    for(int i = 0; i < denom; i++){
+        int sum = 0;
+        int temp = i;
+        for(char c : s2){
+            if(c == '+'){
+                sum++;
+            } else if(c == '-'){
+                sum--;
+            } else {
+                if(temp % 2 == 0){
+                    sum++;
+                } else {
+                    sum--;
+                }
+                temp /= 2;
+            }
+        }
+
+        if(sum == oSum){
+            correct++;
+        }
+    }
+
+    double prob = static_cast<double>(correct) / denom;
+
+    cout.precision(12);
+    cout << fixed << prob << endl;
 
 }
