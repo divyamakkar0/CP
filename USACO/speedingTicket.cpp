@@ -1,28 +1,46 @@
 #include <iostream>
-#include <string>
 #include <vector>
 #include <algorithm>
-#include <cmath>
-#include <set>
-#include <unordered_map>
+
 using namespace std;
 
-int main()
-{
+int main() {
+    freopen("speeding.in", "r", stdin);
+    freopen("speeding.out", "w", stdout);
+
     int n, m;
     cin >> n >> m;
 
-    int road[n][2];
-    int bessie[m][2];
-    vector<int> limit(m);
+    vector<int> road(100);
+    vector<int> bessie(100);
 
-    for (int i = 0; i < n; i++)
-    {
-        cin >> road[i][0] >> road[i][1];
+    int pos = 0;
+    for (int i = 0; i < n; i++) {
+        int l, speed;
+        cin >> l >> speed;
+        for (int j = 0; j < l; j++) {
+            road[pos + j] = speed;
+        }
+        pos += l;
     }
 
-    for (int i = 0; i < n; i++)
-    {
-        cin >> bessie[i][0] >> bessie[i][1];
+    pos = 0;
+    for (int i = 0; i < m; i++) {
+        int l2, speed2;
+        cin >> l2 >> speed2;
+        for (int j = 0; j < l2; j++) {
+            bessie[pos + j] = speed2;
+        }
+        pos += l2;
     }
+
+    int max = 0;
+    for (int i = 0; i < 100; i++) {
+        int olimit = bessie[i] - road[i];
+        if (olimit > max) {
+            max = olimit;
+        }
+    }
+
+    cout << max<< endl;
 }
