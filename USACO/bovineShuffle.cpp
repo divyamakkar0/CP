@@ -7,6 +7,9 @@ using namespace std;
 
 int main()
 {
+    freopen("shuffle.in", "r", stdin);
+    freopen("shuffle.out", "w", stdout);
+
     int n;
     cin >> n;
 
@@ -14,11 +17,8 @@ int main()
     vector<int> id(n);
 
     for(int i = 0; i < n; i++){
-        int a;
-        cin >> a;
-        a--;
-        id.push_back(a);
-    }
+        cin >> perm[i];
+     }
 
     for(int i = 0; i < n; i++){
         cin >> id[i];
@@ -27,10 +27,24 @@ int main()
 
     int shuffleNum = 3;
 
+    vector<int> temp(n);
+     for (int i=0; i<n; i++){  
+        temp[i] = id[i];
+     }
+    
     vector<int> final(n);
 
     for(int i = 0; i < shuffleNum; i++){
-        
+        for(int i = 0; i < n; i++){
+            final[i] = temp[perm[i]-1];
+        }
+        for(int i = 0; i < n; i++){
+            temp[i] = final[i];
+        }
+    }
+
+    for(int i = 0; i < n; i++){
+        cout << final[i] << endl;
     }
 
 
