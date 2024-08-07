@@ -4,60 +4,67 @@
 #include <cmath>
 using namespace std;
 
-int main()
-{   
+int main() {   
     freopen("traffic.in", "r", stdin);
     freopen("traffic.out", "w", stdout);
-    //inputs
-    int n;
+
+  int n;
+
     cin >> n;
+    string type[n];
+    int low[n];
+    int high[n];
 
-    vector<string> type(n);
-    vector<int> start(n);
-    vector<int> end(n);
 
-    for(int i = 0; i < n; i++){
-        cin >> type[i] >> start[i] >> end[i];
+    for (int i = 0; i < n; i++){
+        cin >> type[i] >> low[i] >> high[i];
     }
 
-    int startSpeed = 0;
-    int endSpeed = 100000;
 
-    vector<int> ons;
-    vector<int> offs;
+    int ans_lower = -10000, ans_higher = 10000;
 
-    for(int i = 1; i < n; i++){
-        if(type[i] == "none"){
-            startSpeed = max(startSpeed, start[i]);
-            endSpeed = min(endSpeed, end[i]);
-        } else if (type[i] == "on"){
-            startSpeed += min(start[i], end[i]);
-            endSpeed += min(start[i], end[i]);
-            ons.push_back(i);
-        } else if (type[i] == "off"){
-            startSpeed -= end[i];
-            endSpeed -= start[i];
-            offs.push_back(i);
+
+    for (int i = n - 1; i >= 0; i--){
+        if (type[i] == "none"){
+            ans_lower = max(ans_lower, low[i]);
+            ans_higher = min(ans_higher, high[i]);
+
+        }
+
+        else if (type[i] == "off"){
+            ans_lower += low[i];
+            ans_higher += high[i];
+        }
+
+        else if (type[i] == "on"){
+            ans_higher -= low[i];
+            ans_lower -= high[i];
         }
     }
 
-    int lp = 0;
-    if (!ons.empty()){
-        lp = min(ons[0], offs[0]);
-    } lp = offs[0];
+    cout << max(0, ans_lower) << ' ' << ans_higher << '\n';
+    ans_lower = -10000;
+    ans_higher = 10000;
 
-    int s1 = 0;
-    int e1 = 100000;
-    for(int i = 1; i < lp; i++){
-        s1 = max(s1, start[i]);
-        e1 = min(e1, end[i]);
+
+    for (int i = 0; i < n; i++){
+        if (type[i] == "none"){
+            ans_lower = max(ans_lower, low[i]);
+            ans_higher = min(ans_higher, high[i]);
+
+        }
+
+        else if (type[i] == "on"){
+            ans_lower += low[i];
+            ans_higher += high[i];
+        }
+
+        else if (type[i] == "off"){
+            ans_higher -= low[i];
+            ans_lower -= high[i];
+        }
+
     }
-
-    s1 -= start[0];
-    e1 -= end[0];
-
-    cout << s1 << " " << e1 << endl;
-    cout << startSpeed << " " << endSpeed;
-
+    cout << max(0, ans_lower) << ' ' << ans_higher << '\n';
 
 }
