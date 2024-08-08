@@ -5,24 +5,33 @@
 using namespace std;
 
 int main(){
-    // reopen("cbarn.in", "r", stdin);
-    // freopen("cbarn.out", "w", stdout);
+    freopen("cbarn.in", "r", stdin);
+    freopen("cbarn.out", "w", stdout);
 
     //inputs
     int n;
-    vector<int> room;
-    int cowsT = 0;
+    cin >> n;
 
+    vector<int> room(n);
     for(int i = 0; i < n; i++){
         cin >> room[i];
-        cowsT += room[i];
     }
 
     //go through every room
+    int minSum = INT32_MAX;
+
     for(int i = 0; i < n; i++){
-        int startingRoom = i;
-        for(int i = )
+        int sum = 0;
+
+        for(int j = 0; j <n; j++){
+            int index = (i + j) % n;
+            int cowDistance = room[index] * j;
+            sum += cowDistance;
+
+        }
+
+        minSum = min(minSum, sum);
     }  
 
-
+    cout << minSum << endl;
 }
