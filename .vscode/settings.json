@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "ostream": "cpp",
+        "unordered_map": "cpp",
+        "iostream": "cpp",
+        "valarray": "cpp",
+        "cmath": "cpp",
+        "vector": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "enabled"
+}
