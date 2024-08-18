@@ -8,29 +8,21 @@ using namespace std;
 
 int main()
 {
-    int n;
+    int n; 
     cin >> n;
 
-    vector<pair<char, int>> cows(n);
-    for(int i = 0; i < n; i++){
-        cin >> cows[i].first >> cows[i].second;
+    pair<char, int> p[n];
+    for (int i=0; i<n; i++){
+        cin >> p[i].first >> p[i].second;
     }
 
-    int lying = 0;
-    int lowest = 0;
-    int highest = 1000000000;
-
-    for(int i = 0; i < n; i++){
-        if (cows[i].first == 'G'){
-            lowest = cows[i].second;
-        }
-        if (cows[i].first == 'L'){
-            highest = cows[i].second;
-        }
-        if(highest < lowest){
-            lying = 1 + (n-1-i);
-        }
+    int ans = n;
+    for (int i=0; i<n; i++) {
+        int liars = 0;
+        for (int j=0; j<n; j++)
+            if((p[j].first=='L'&&p[i].second>p[j].second)||(p[j].first=='G'&&p[i].second<p[j].second))
+                liars++;
+            ans = min(ans, liars);
     }
-
-    cout << lying;
+    cout << ans;
 }
