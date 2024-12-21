@@ -12,67 +12,81 @@ int main()
     string a;
     string b;
     string c;
+    int nin;
     cin >> a >> b >> c;
-    cin >> n; 
+    cin >> nin;
 
     string final;
     string a_new;
     string b_new;
     string c_new;
 
-    while (n--){
+    
         for (int i = 0; i < a.length(); i++)
         {
             if (a[i] == '-' || a[i] == ';' || a[i] == '_')
             {
                 continue;
-            } else {
+            }
+            else
+            {
                 a_new += tolower(a[i]);
             }
-
         }
 
-    //cout << "a_new: " << a_new << endl;
+        // cout << "a_new: " << a_new << endl;
 
         for (int j = 0; j < b.length(); j++)
         {
             if (b[j] == '-' || b[j] == ';' || b[j] == '_')
             {
                 continue;
-            } else {
+            }
+            else
+            {
                 b_new += tolower(b[j]);
             }
         }
 
-    //cout << "b_new: " << b_new << endl;
+        // cout << "b_new: " << b_new << endl;
 
         for (int k = 0; k < c.length(); k++)
         {
             if (c[k] == '-' || c[k] == ';' || c[k] == '_')
             {
                 continue;
-            } else {
+            }
+            else
+            {
                 c_new += tolower(c[k]);
             }
         }
 
-    //cout << "c_new: " << c_new << endl;
-
+        // cout << "c_new: " << c_new << endl;
+    while (nin--) {
         string temp;
         cin >> temp;
         string n;
 
-        for (int i = 0; i < temp.length(); i++){
-            n += tolower(temp[i]);
+        for (int i = 0; i < temp.length(); i++)
+        {
+            if (temp[i] == '-' || temp[i] == ';' || temp[i] == '_')
+            {
+                continue;
+            }
+            else
+            {
+                n += tolower(temp[i]);
+            }
         }
-        
 
-        if ((n.find(a_new) != string::npos) && (n.find(b_new) != string::npos) && (n.find(c_new) != string::npos))
+        if (n == a_new + b_new + c_new || n == a_new + c_new + b_new || n == b_new + c_new + a_new || n == b_new + a_new + c_new || n == c_new + a_new + b_new || n == c_new + b_new + a_new)
         {
             cout << "ACC" << endl;
-        } else {
-        cout << "WA" << endl;
+        }
+        else
+        {
+            cout << "WA" << endl;
         }
     }
-    
 }
