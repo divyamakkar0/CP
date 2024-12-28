@@ -9,45 +9,31 @@ using namespace std;
 
 int main()
 {
-    int n;
-    int k;
+    int n, k, sum=0;
     cin >> n >> k;
-    vector<int> nums(n);
+    vector<int> nums;
 
     for(int i = 0; i < n; i++){
         int temp;
         cin >> temp;
-        nums[i] = temp;
+        nums.push_back(temp);
     } 
     
-    int sum = 0;
-    if (k <= n){
-        for(int j = 0; j < n; j++){
-            if (j < k){
-                nums[j] = nums[j] * -1;
-            }
-            sum += nums[j];
-        }
-    } else if (int(floor(k / n)) % 2 == 0){
-       for (int j = 0; j < n; j++){
-            if (j < (n % k)){
-                nums[j] = nums[j] * -1;
-            }
-            sum += nums[j];
-        } 
-    } else {
-       for (int j = 0; j < n; j++){
-            nums[j] = nums[j] * -1;
-        }  
-        sort(nums.begin(), nums.end());
-
-        for (int j = 0; j < n; j++){
-            if (j < (n % k)){
-                nums[j] = nums[j] * -1;
-            }
-            sum += nums[j];
+    for(int i = 0; i < n && k > 0; i++){
+        if (nums[i] < 0){
+            nums[i] *= -1;
+            k--;
         }
     }
 
+    sort(nums.begin(), nums.end());
+
+    if (k % 2 == 1){
+        nums[0] *= -1;
+    }
+
+    for(int i = 0; i < n; i++){
+        sum += nums[i];
+    }
     cout << sum << endl;
 }
