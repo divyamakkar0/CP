@@ -7,9 +7,6 @@
 #include <unordered_map>
 using namespace std;
 
-#include <iostream>
-using namespace std;
-
 int main() {
     int n, k;
     cin >> n >> k;
