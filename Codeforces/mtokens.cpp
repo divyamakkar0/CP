@@ -7,33 +7,19 @@
 #include <unordered_map>
 using namespace std;
 
-int main(){
-    int n, a, b;
+int main() {
+    long long n, a, b;
     cin >> n >> a >> b;
 
-    vector<int> coins(n);
-    for(int i = 0; i < n; i++){
+    vector<long long> coins(n);
+    for (long long i = 0; i < n; i++) {
         cin >> coins[i];
-        if ((coins[i] * a) % b == 0){
-            coins[i] = 0;
-        } else {
-            int xi = coins[i] % b;
-            int amodb = a % b;
-            if (b % amodb == 0){
-                int div = b / amodb;
-                if (xi > div){
-                    coins[i] = (xi - div);
-                } else {
-                    coins[i] = xi;
-                }
-            } else {
-                coins[i] = xi;
-            }
-        }
-        cout << coins[i] << " ";
+        long long saved = ((coins[i] * a % b) / a);
+        cout << saved << " ";
     }
 
     cout << endl;
     return 0;
-      
 }
+
+
