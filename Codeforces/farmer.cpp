@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <map>
 #include <string>
 using namespace std;
 
@@ -13,34 +14,55 @@ int main()
         int n, m;
         cin >> n >> m;
 
-        int global_min = 1000000;
-        int global_max = 0;
-        int min_row, max_row = -1;
-
-
         int cards[n][m];
         for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < m; j++)
             {
                 cin >> cards[i][j];
-                if (cards[i][j] > global_max){
-                    global_max = cards[i][j];
-                    max_row = i;
-                }
+            }
+        }
 
-                if (cards[i][j] < global_min){
-                    global_min = cards[i][j];
-                    min_row = i;
+        //index: smallest number, value: row number
+        map<int, int> first_cards;
+
+        for (int i = 0; i < n; i++){
+            sort(cards[i], cards[i] + m);
+            int index = cards[i][0];
+            first_cards[index] = i;
+        }
+
+        int top_card = -1;
+        int success = 0;
+        for (int i = 0; i < m; i++){
+            for (auto &card : first_cards){
+                int index = card.second;
+                if (cards[index][i] <= top_card){
+                    success = 1;
+                    break;
+                } else {
+                    top_card = cards[index][i];
                 }
             }
         }
 
-        if (n == 1)
-        {
-            cout << 1 << endl;
-        } else if (min_row != max_row){
-            cout
+        if (success == 0){
+            for (auto &card : first_cards){
+                cout << card.second + 1 << " ";
+            }
+            cout << endl;
+        } else {
+            cout << -1 << endl;
         }
+
+
+        // for (int i = 0; i < n; i++){
+        //     for (int j = 0; j < m; j++){
+        //         cout << cards[i][j] << " ";
+        //     }
+        //     cout << endl;
+        // }
+
+
     }
 }
