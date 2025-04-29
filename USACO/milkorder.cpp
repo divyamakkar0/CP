@@ -14,6 +14,8 @@ int find(vector<int> v, int e){
 
 int main()
 {
+    freopen("milkorder.in", "r", stdin);
+    freopen("milkorder.out", "w", stdout);
     int n, m, k;
     cin >> n >> m >> k;
 
@@ -36,33 +38,52 @@ int main()
     for(int i = 0; i < n; i++){
         if (order[i] == 0) {        
             vector<int> my_order = order;
-
             my_order[i] = 1;
+            int leftp = -1;
+            int works = 1;
 
-            for(int j = 0; j < m-1; j++){
+            for(int j = 0; j < m; j++){
                 if (m == 1){
                     break;
                 }
-                int rightP = find(my_order, h[j+1]);
-                    bool found = false; 
-                    for(int k = 0; k < n; k++){
+                int hp = find(my_order, h[j]);
+                // cout << "element is " << h[j] << " status is " << hp << endl;
+                if (hp == -1){
+                    bool placed = false;
+                    for(int k = leftp+1; k < n;k++){
                         if (my_order[k] == 0){
-                            if (k > rightP){
-                                found = false;
-                                break;
-                            }
-                        }
-                        if(k == n-1 && k != 0){
-                            found = false;
-                            break; 
+                            my_order[k] = h[j];
+                            leftp = k;
+                            placed = true;
+                            break;
                         }
                     }
-                    if (found == false) continue;
+                    if(!placed){
+                        works = 0;
+                        break;
+                    }
+                } else {
+                    if (hp <= leftp){
+                        works = 0;
+                        break;
+                    }
+                    leftp = hp;
+                }
+                // for(int l = 0; l < n; l++){
+                //     cout << my_order[l] << " ";
+                // }
+                if (works == 0){
+                    break;
+                }
+                
 
                 }
-            } 
-        // one = i;
-        // break; 
+            
+            if (works != 0){
+                one = i;
+                break; 
+            }
+        }
     }
-    cout << one;
+    cout << one + 1 << endl;
 }
