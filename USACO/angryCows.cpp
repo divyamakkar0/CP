@@ -8,6 +8,9 @@ using namespace std;
 
 int main()
 {
+    freopen("angry.in", "r", stdin);
+    freopen("angry.out", "w", stdout);
+
     int n;
     cin >> n;
     vector<int> bales(n);
@@ -15,57 +18,54 @@ int main()
     sort(bales.begin(), bales.end());
 
 
-    // we do this for every cow and simulate the explosion
     int max_explosions = 0;
     for (int i = 0; i < n; i++)
     {
         
         int bale_counter = 1;
         int radius = 1;
-        int lb = i - radius;
-        int ub = i + radius;
+        int cur = i;
 
-        cout << i << " ______" << endl;
-        int current = i;
-
-        // simulate explosion to the left
-        while (lb >= 0)
-        {
-            for(int j = 0; j < lb; j++){
-                if (bales[current] - bales[j] <= radius)
-                {
-                    bale_counter++;
-                    radius += 1;
-                    current = lb;
-                    lb = current - radius;
+        while(true){
+            int lb = cur;
+            for(int j = cur - 1; j >= 0; j--){
+                if (bales[cur] - bales[j] <= radius){
+                    lb = j;
+                } else {
+                    break;
                 }
-                else
-                {
+            } 
+            if (lb == cur)
+                break;
+            bale_counter += cur - lb;
+            cur = lb;
+            radius++;
+        }
+
+        radius = 1;
+        cur = i;
+
+        while (true)
+        {
+            int ub = cur;
+            for(int j = cur + 1; j < n; j++){
+                if (bales[j] - bales[cur] <= radius){
+                    ub = j;
+                } else {
                     break;
                 }
             }
-            
-            cout << "current " << current << endl;
-            cout << "bale counter: " << bale_counter << " radius: " << radius << " lb: " << lb << " ub: " <<  ub << endl;
+            if (ub == cur){
+                break;
+            }
+
+            bale_counter += ub - cur;
+            cur = ub;
+            radius++;
         }
 
-        // while (ub < n)
-        // {
-        //     int current = i; 
-        //     if (bales[current] + radius == bales[ub]){
-        //         bale_counter++;
-        //         radius += 1;
-        //         current = ub;
-        //         ub = current + radius;
-        //     } 
-        //     else{
-        //         break;
-        //     }
-        //     // cout << "current " << current << endl;
-        //     // cout << "bale counter: " << bale_counter << " radius: " << radius << " lb: " << lb << " ub: " <<  ub << endl;
-        // }
-        // max_explosions = max(max_explosions, bale_counter);
+        max_explosions = max(max_explosions, bale_counter);
     }
 
-    // cout << max_explosions << endl;
+    cout << max_explosions << endl;
 }
