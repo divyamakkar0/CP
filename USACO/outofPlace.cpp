@@ -31,7 +31,7 @@ int main()
         {
             if (order[i] >= order[i - 1])
             {
-                continue:
+                continue;
             }
             else
             {
