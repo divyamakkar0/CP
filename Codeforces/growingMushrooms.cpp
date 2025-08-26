@@ -23,18 +23,15 @@ int main()
     cin >> n >> t1 >> t2 >> k;
     
     vector<pair<double, double>> speeds;
+    vector<pair<int, double>> res;
     for(int i =0; i < n; i++){
         double ai, bi;
         cin >> ai >> bi;
         speeds.push_back(make_pair(ai, bi));
-    }
-
-    vector<pair<int, double>> res;
-    for(int i = 0; i < n; i++){
         double h = calculate(t1, t2, k, speeds[i].first, speeds[i].second);
         res.emplace_back(make_pair(i+1, h));
     }
-
+    
     sort(res.begin(), res.end(), [](const pair<int,double> &a, const pair<int,double> &b) {
         if (a.second == b.second)
             return a.first < b.first;
